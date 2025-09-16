@@ -20,8 +20,8 @@ func (p person) String() string {
 	return p.name + " is " + fmt.Sprint(p.age) + " years old and has a pet " + p.pet.animal + " who is " + fmt.Sprint(p.pet.age) + " years old."
 }
 
-func (p person) updateName(newName string) {
-	p.name = newName
+func (p_ptr *person) updateName(newName string) {
+	(*p_ptr).name = newName // Pass by value, does not change the original
 }
 
 func main() {
@@ -31,6 +31,6 @@ func main() {
 	fmt.Println(person1)
 	fmt.Println(person2)
 
-	person1.updateName("Alicia") // This does not change the name
+	(&person1).updateName("Alicia")
 	fmt.Println(person1)
 }
